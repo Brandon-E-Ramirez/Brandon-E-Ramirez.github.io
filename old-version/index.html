@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Resources:
+    Guide: https://www.youtube.com/watch?v=KtYby2QN0kQ
+    
+    
+    
+    -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <script defer src="pageLogic.js"></script>
+    <title>Ramirez Portfolio | Terminal Emulator</title>
+<style>
+
+.wrap{
+    white-space: break-spaces;
+}
+
+div{
+      display : inline-block;
+      padding:0px;
+      margin-left:-4px;
+    }
+p{
+    display : inline-block;
+    padding:0px;
+    margin-bottom:-10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    font-family: DejaVu Sans Mono, monospace;
+}
+body{
+    background-color: #211d1b;
+    opacity: 1.0;
+}
+.text-art{
+    
+    color: #9eb100;
+}
+.default-text{
+  /*#e6d2b5*/
+    color: #fbf1c7;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: italic;
+}
+.label-text{
+    color: #83a598;
+    
+    font-size: 12px;
+    font-weight: bold;
+}
+.command-sym{
+    
+    /*color: #dd95b4;*/
+    color:#b16266;
+    font-size: 12px;
+}
+
+@keyframes cursor-blink {
+  0% {
+    opacity: 0;
+  }
+}
+
+
+
+.colorscheme-img{
+    opacity: 0.50;
+    margin-top: -4;
+}
+.colorscheme-img:hover {
+  opacity: 0.70;
+}
+.cmnd-prompt{
+
+    color: #e6d2b5;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: italic;
+}
+.links{
+    color: #7aacac;
+    font-size: 12px;
+}
+
+
+
+
+
+.box {
+  padding: 0 50px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.box p::after {
+  content: "";
+  width: 8px;
+  height: 18px;
+  background: #b8bb26;
+  margin-bottom: 0;
+  display: inline-block;
+  animation: cursor-blink 1.5s steps(2) infinite;
+}
+
+
+
+#flip-span {
+        display: inline-block;
+        margin: 0px;
+      }
+
+
+.reflected-text{
+        /*reflects part of the neofetch command text*/
+        transform: scale(-1, 1);
+        color: #d79921;
+        -moz-transform: scale(-1, 1);
+        -webkit-transform: scale(-1, 1);
+        -o-transform: scale(-1, 1);
+        -ms-transform: scale(-1, 1);
+        transform: scale(-1, 1);
+
+}
+
+.pastel-color{
+color:#d65d0e;
+}
+
+.non-italic{
+  font-style: normal;
+  color: #fbf1c7;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+#input-field{
+  color: #fbf1c7;
+  background-color: #211d1b;
+  border-color: #211d1b;
+
+  /*3d outline is hidden*/
+  border-top-style: hidden;
+  border-left-style: hidden;
+}
+/*removes blue textbox focus when selected*/
+input:focus {outline: none; }
+
+
+
+
+</style>
+
+<!--https://www.flaticon.com/free-icons/terminal-->
+<link rel="icon" type="image/x-icon" href="assets/icons/green-icon.ico">
+<!--<a href="https://www.flaticon.com/free-icons/terminal" title="terminal icons">Terminal icons created by DinosoftLabs - Flaticon</a>-->
+
+
+
+</head>    
+
+<body>
+    <pre><div class="default-text" id="rights-reserved">Brandon-E-Ramirez • RTermEmulator© <span class="pastel-color" >v1.0.2</span> • No rights reserved</div></pre>
+    
+    <pre class="text-art" id="text-art">
+                                                                      <span class="pastel-color"> ________ </span>
+$$$$$$$\                                     $$\                     <span class="pastel-color"> |        \  </span>$$$$$$$\		            $$\                                
+$$  __$$\                                    $$ |                    <span class="pastel-color"> | $$$$$$$$  </span>$$  __$$\                         \__|                               
+$$ |  $$ | $$$$$$\  $$$$$$\  $$$$$$$\   $$$$$$$ | $$$$$$\  $$$$$$$\  <span class="pastel-color"> | $$__      </span>$$ |  $$ | $$$$$$\  $$$$$$\$$$$\  $$\  $$$$$$\   $$$$$$\  $$$$$$$$\  
+$$$$$$$\ |$$  __$$\ \____$$\ $$  __$$\ $$  __$$ |$$  __$$\ $$  __$$\ <span class="pastel-color"> | $$  \     </span>$$$$$$$  | \____$$\ $$  _$$  _$$\ $$ |$$  __$$\ $$  __$$\ \____$$  | 
+$$  __$$\ $$ |  \__|$$$$$$$ |$$ |  $$ |$$ /  $$ |$$ /  $$ |$$ |  $$ |<span class="pastel-color"> | $$$$$     </span>$$  __$$<  $$$$$$$ |$$ / $$ / $$ |$$ |$$ |  \__|$$$$$$$$ |  $$$$ _/  
+$$ |  $$ |$$ |     $$  __$$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |<span class="pastel-color"> | $$___     </span>$$ |  $$ |$$  __$$ |$$ | $$ | $$ |$$ |$$ |      $$   ____| $$  _/    
+$$$$$$$  |$$ |     \$$$$$$$ |$$ |  $$ |\$$$$$$$ |\$$$$$$  |$$ |  $$ |<span class="pastel-color"> | $$     \  </span>$$ |  $$ |\$$$$$$$ |$$ | $$ | $$ |$$ |$$ |      \$$$$$$$\ $$$$$$$$\  
+\_______/ \__|      \_______|\__|  \__| \_______| \______/ \__|  \__|<span class="pastel-color">  \$$$$$$$$  </span>\__|  \__| \_______|\__| \__| \__|\__|\__|       \_______|\________| 
+
+</pre>  
+
+<code class="label-text" id="links">Digital Craftsman (Creator/Programmer/Problem Solver) 
+    
+    <span>
+    <a href="https://github.com/Brandon-E-Ramirez" target="_blank" class="links">GitHub</a> <a href="https://digital-crafting.hashnode.dev/" target="_blank" class="links">Blog</a> <a href="https://www.linkedin.com/in/brandon-e-ramirez/" target="_blank" class="links">LinkedIn</a> <a href="https://twitter.com/yaboi_ramirez" target="_blank" class="links">Twitter</a> <a href = "mailto: brandon.evaristo.ramirez@gmail.com" class="links">Email</a>
+    </span><br>
+    <div class="command-sym">Welcome to my beautiful website fellow humans and bots...</div>
+</code>                                                                                                                                                   
+                                                                                                                                                            
+<pre class="default-text" id="intro">
+<div>This is my personal website for all things programming, feel free to reach out to me!</div>
+<div>Welcome to my interactive web terminal portfolio! Here you will find my personal projects, technical blog, and </div>
+<div>For a list of available commands, type 'help'</div>
+
+<div>This project is now open source, type 't-repo' to check it out</div>
+<div>For a simplified version, type 's'</div>
+<!--Appears after every time a command is executed-->
+<div class="cmnd-prompt" id="cmnd-prompt"> > guest@brandon-term.com:<span class="command-sym">~$</span></div>
+</pre>
+
+<span class="default-text"></span>
+
+<pre class="text-art" id="neofetch">
+  <div>                       .,,uod8B8bou,,.                                   <span><span class="label-text">Client: </span><span class="default-text">visitor-local-machine</span></span></div> 
+  <div>                 ..,uod8BBBBBBBBBBBBBBBBRPFT?l!i:.                       <span><span class="label-text">Operating System: </span><span class="default-text">Windows 11...(probably, bleh)</span></span></div>
+  <div>            ,=m8BBBBBBBBBBBBBBBRPFT?!||||||||||||||                      <span><span class="label-text">Kernel: </span><span class="default-text">beats me</span></span></div> 
+  <div>            !...:!TVBBBRPFT||||||||||!!^^""'   ||||                      <span><span class="label-text">Patience: </span><span class="default-text">running out</span></span></div> 
+  <div>            !.......:!?|||||!!^^""'            ||||                      <span><span class="label-text">Uptime: </span><span class="default-text">a few seconds?</span></span></div> </div> 
+  <div>            !.........||||                     ||||                      <span><span class="label-text">Packages: </span><span class="default-text">unknown</span></span></div>        
+  <div>            !.........||||  >$                 ||||                      <span><span class="label-text">Shell: </span><span class="default-text">born again shell</span></span></div>
+  <div>            !.........||||                     ||||                      <span><span class="label-text"></span>************************************************</span></div>   
+  <div>            !.........||||                     ||||                      <span><span class="label-text">Resolution: </span><span class="default-text">1920 x 1080 (hopefully..)</span></span> </div> 
+  <div>            !.........||||                     ||||                      <span><span class="label-text">DE: </span><span class="non-italic">ヾ(☆▽☆)</span></span></div> 
+  <div>            !.........||||                     ||||                      <span><span class="label-text">WM: </span><span class="default-text">i3 window manager</span></span></div> 
+  <div>            `.........||||                    ,||||                      <span><span class="label-text">Terminal: </span><span class="default-text">RTermEmulator v1.0</span></span></div> 
+  <div>             .;.......||||               _.-!!|||||                      <span><span class="label-text"></span>************************************************</span></div> 
+  <div>      .,uodWBBBBb.....||||       _.-!!|||||||||!:'                       <span><span class="label-text">Date: </span><span class="default-text">December 23rd, 2022</span></span></div> 
+  <div>   !YBBBBBBBBBBBBBBb..!|||:..-!!|||||||!iof68BBBBBb....                  <span><span class="label-text">Weather: </span><span class="default-text">La Marque: 20°F/-6.6°C</span></span></div> 
+  <div>   !..YBBBBBBBBBBBBBBb!!||||||||!iof68BBBBBBRPFT?!::   `.                <span><span class="label-text">Public IP: </span><span class="default-text">76.142.213.245</span></span></div> 
+  <div>   !....YBBBBBBBBBBBBBBbaaitf68BBBBBBRPFT?!:::::::::     `.              <span><span class="label-text">TO DO: </span><span class="default-text">make this website better</span></span></div> 
+  <div>   !......YBBBBBBBBBBBBBBBBBBBRPFT?!::::::;:!^"`;:::       `.                                                  </div> 
+  <div>   !........YBBBBBBBBBBRPFT?!::::::::::^''...::::::;         iBBbo.              <span><span class="pastel-color">close the world, </span><span class="reflected-text" id="flip-span">open the next...</span></span></div> 
+  <div>   `..........YBRPFT?!::::::::::::::::::::::::;iof68bo.      WBBBBbo.    <span class="command-sym">================================================</span></div> 
+  <div>     `..........:::::::::::::::::::::::;iof688888888888b.     `YBBBP^'   <span class="command-sym">| [][] _____________________________ [_][_][_] |</span></div> 
+  <div>       `........::::::::::::::::;iof688888888888888888888b.     `        <span class="command-sym">| [][] [_][_][_] [_][_][_][_] [_][_] [_][_][_] |</span></div> 
+  <div>         `......:::::::::;iof688888888888888888888888888888b.            <span class="command-sym">|                                              |</span></div> 
+  <div>           `....:::;iof688888888888888888888888888888888899fT!           <span class="command-sym">| [][] [][][][][][][][][][][][][][_] [][][][]  |</span></div> 
+  <div>             `..::!8888888888888888888888888888888899fT|!^"'             <span class="command-sym">| [][] [_][][][][][][][][][][][][][] [][][][]  |</span></div>     
+  <div>               `' !!988888888888888888888888899fT|!^"'                   <span class="command-sym">| [][] [__][][][][][][][][][][][][_] [][][][]  |</span></div>    
+  <div>                   `!!8888888888888888899fT|!^"'                         <span class="command-sym">| [][] [___][][][][][][][][][][][__] [__][][]  |</span></div> 
+  <div>                     `!988888888899fT|!^"'                               <span class="command-sym">|          [_][______________][_]              |</span></div> 
+  <div>                       `!9899fT|!^"'                                     <span class="command-sym">|______________________________________________|</span></div> 
+  <div>                         `!^"'                                                                                                                            </div> 
+  <!--https://i.imgur.com/5y39azc.png-->
+  <img src="./assets/images/grub-colors.png" class="colorscheme-img" alt="gruvbox color scheme" style="width:500px;height:200px;">
+  </pre>
+
+  <div class="" id="animated-cursor">
+    <span class="box">
+      <p class="cmnd-prompt"> > guest@brandon-term.com:<span class="command-sym">~$ </span></p>
+     
+     <input type="text" id="input-field" name="input" maxlength="19">
+    </span>
+  </div>
+  
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

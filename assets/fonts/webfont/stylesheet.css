@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'DroidSansM Nerd Font Mono';
+    src: url('/assets/fonts/webfont/DroidSansMNFM.woff2') format('woff2'),
+        url('/assets/fonts/webfont/DroidSansMNFM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

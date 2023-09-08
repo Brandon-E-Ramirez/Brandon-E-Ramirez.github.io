@@ -1,0 +1,375 @@
+/**gruvbox: https://github.com/morhetz/gruvbox **/
+
+
+.command-container {
+    display: flex; /* Use flexbox layout */
+    align-items: center; /* Vertically align items in the center */
+}
+
+body{
+    font-family:'DroidSansM Nerd Font Mono', monospace;
+    font-size:small;
+    /*background-color: #1d2021;*/
+    background-image: url("/assets/images/backgrounds/use/1.jpg");
+    /*possible backgrounds*/
+    /* the best so far:
+    background-image: url("https://media.tenor.com/0UZ54rZISt8AAAAC/rainy-day.gif"); 
+    
+    url("assets/images/backgrounds/58BZxxI.gif"); 
+    https://i.pinimg.com/originals/aa/77/f8/aa77f875bd7a3947640860914d33cef8.gif
+    https://media.tenor.com/7SyjVdzFqmMAAAAC/stars-night.gif
+    https://media.tenor.com/0UZ54rZISt8AAAAC/rainy-day.gif
+    https://media.tenor.com/JOuI6sxn1zEAAAAC/pavement-rain.gif
+    */
+    background-size:cover;
+    background-attachment: fixed;/*this keep image from stretching when the webpage grows taller*/
+    background-repeat: no-repeat;
+    color: #ebdbb2;
+    border: 3px solid #b8bb26;
+    border-radius: 1px;
+    margin:14px;
+    padding: 10px; 
+    position:relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    backdrop-filter: blur(10px) brightness(60%);
+    transform: scale(1.0);
+
+}
+
+body:hover{
+  backdrop-filter: brightness(50%) blur(12px);
+}
+
+a:hover {
+  background-color: #b8bb26;
+}
+
+#rights-reserved{
+  color: #FFFFFF;
+}
+
+input {
+    position:relative;
+    text-align: right;
+    border: none;
+    outline: none;
+    color: #98971a;
+    font-family: monospace;
+    background: transparent;
+    /*background-color: #282828;*/
+    caret-color: transparent;
+    font-size: 14px;
+}
+
+.ascii-art {
+    font-family: monospace;
+    white-space: pre;
+}
+
+.text-art{
+    font-family: monospace;
+    white-space:pre;
+    color: #9eb100;
+}
+
+
+#flip-span {
+        display: inline-block;
+        margin: 0px;
+      }
+
+.reflected-text{
+        /*reflects part of the neofetch command text*/
+        transform: scale(-1, 1);
+        color: #d79921;
+        -moz-transform: scale(-1, 1);
+        -webkit-transform: scale(-1, 1);
+        -o-transform: scale(-1, 1);
+        -ms-transform: scale(-1, 1);
+        transform: scale(-1, 1);
+
+}
+
+.nufetch{
+  font-family: monospace;
+  white-space: pre;
+  line-height:5px;
+}
+
+.pastel-color{
+    color:#fd971f;
+    }
+
+.pastel-color-year{
+  color:#f92672;
+}
+
+.label-text{
+    color: #83a598; 
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#cmnd-prompt{
+    color: #9eb100;
+}
+
+.dir{
+  color: #d79921;
+  font-style: italic;
+}
+
+#dc{
+  color: #1da1f2;
+}
+
+.command-sym{
+  color: #b8bb26;
+  font-size: small;
+}
+ 
+#rights-reserved{
+  color:#FFFFFF;
+}
+
+.colorscheme-img{
+  width: 500px;
+  height: 200px;
+  border: #b8bb26;
+  border-style: solid;
+  border-width: 4px;
+}
+
+.colorscheme-img:hover {
+  opacity: 0.90;
+}
+
+.stats{
+  display: inline-block;
+  border: transparent;
+  border-style: solid;
+  border-width: 4px;
+  outline: transparent;
+  align-items:center;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.stats:hover{
+  opacity: 0.70;
+}
+
+.label-text{
+  color: #b8bb26;
+}
+
+/*css used to animate the blinking cursor*/
+
+.blinking-cursor {
+  width: 8px;
+  height: 18px;
+  background-color: #b8bb26;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/*makes the string "help" glow*/
+
+/*
+.glow {
+  font-size: 14px;
+  color: #fff;
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF, 0 0 30px #FFFFFF, 0 0 40px FFFFFF, 0 0 50px #FFFFFF
+  } 
+  to {
+    text-shadow: 0 0 20px #FBF1C7, 0 0 30px #fbf1c7, 0 0 40px #fbf1c7, 0 0 50px #fbf1c7
+  }
+}*/
+
+
+.topnav {
+  background-color: #333;
+  overflow: auto;
+  margin-top: -10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-bottom: -6px;
+}
+
+.topnav a {
+  position:static;
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 1px 10px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #98971a;
+  color: white;
+}
+
+.topnav a:hover {
+  background-color: #fbf1c7;
+  color: #000000;
+}
+
+.topnav span {
+  background-color: #af3a03;
+  color: white;
+  overflow: auto;
+  float: right;
+  padding-bottom: 2px;
+  padding-right: 4px;
+  padding-left: 6px;
+  font-size: 16px;
+}
+
+.topnav span:hover{
+  background-color: #ddd;
+  color: black;
+}
+
+hr.top {
+  border: 1px solid #b8bb26;
+  margin-left:-0.6%;
+  margin-right: -0.6%;
+  margin-top: 6px;
+}
+
+/* Add a black background color to the top navigation */
+.bottomnav {
+  background-color: #333;
+  overflow: auto;
+  position:static;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  color: #f2f2f2;
+  margin-right: 10px;
+}
+
+/* Style the links inside the navigation bar */
+.leftBottomNav {
+  float: left;
+  font-size: small;
+  background-color: #076678;
+  color: #ddd;
+  overflow: auto;
+  padding: 1px 5px;
+  font-size: small;
+}
+
+.rightBottomNav {
+  float: right;
+  background-color: #d79921;
+  color: #000000;
+  overflow: auto;
+  padding: 1px 5px;
+  font-size: small;
+}
+
+.bottomLeftInnerSpan:hover{
+  background-color: #ddd;
+  color: black;
+}
+
+/* Change the color of links on hover */
+.bottomRightInnerSpan:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+
+
+
+
+#theme #network #charge #cpu #id #uptime:hover{
+  background-color: #ddd;
+  color: black;
+  font-size: small;
+}
+
+#quit #encoding #shell #calendar #time:hover{
+  background-color: #ddd;
+  color: black;
+  font-size: small;
+}
+
+/* Add a color to the active/current link */
+.bottomnav span.active {
+border-color: #8f3f71;
+outline-color: #8f3f71;
+background-color: #8f3f71;
+  color: white;
+
+margin-left: -4px;
+padding-left: 6px;
+padding-right: 4px;
+padding-top: 4px;
+padding-bottom: 4px;
+
+}
+
+#playButton{
+margin-left: -7px;
+margin-bottom: -2px;
+padding-bottom: 1px;
+color: #000000;
+background-color: #1da1f2;
+font-size:small;
+outline: none;
+border: transparent;
+/*	#1DA1F2  #076678; */
+outline-color: #1da1f2;
+font-family:'DroidSansM Nerd Font Mono', monospace;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

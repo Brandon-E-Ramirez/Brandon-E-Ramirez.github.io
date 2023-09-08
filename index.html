@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ramirez | Terminal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/fonts/webfont/stylesheet.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon/terminal.png">
+  </head>
+  <body onclick="focusInput()" id="termBody">
+    <!--make a terminal website in which the user can type a string into 
+      hidden input box, the new text inputed will be animated like a  typewriter, each 
+      "command" being rendered instanteneously-->
+ <div class="topnav">
+
+  <a class="active" href="https://github.com/Brandon-E-Ramirez" target="_blank">GitHub</a>
+  <a href="assets/documents/Brandon E Ramirez Resume Summer 2023.pdf" download>Resume</a> 
+  <a href="" target="_blank">Tab</a> <!--display options for changing theme, accessability settings (font, size, contrast, etc.)-->
+  <a href="https://github.com/Brandon-E-Ramirez/terminal_portfolio" target="_blank">Info</a>
+  <a href="https://github.com/Brandon-E-Ramirez?tab=repositories" target="_blank">Projects</a>
+  <a href="https://external.ink?to=/digital-crafting.hashnode.dev" target="_blank">Technical Blog</a>
+  <a href="https://dot.cards/brandon_e_ramirez" target="_blank">Links</a>
+  <a href="mailto:brandon.evaristo.ramirez@gmail.com, brandonevaristo53@gmail.com?subject=Ramirez Term: Guest Email&body=Hello!" target="_blank">Contact</a>
+  <span>sudo mode</span>
+</div> 
+<hr class="top">
+
+<pre><div class="default-text" id="rights-reserved">Brandon-E-Ramirez • RTermEmulator <span class="pastel-color-year" >MMXXIII AD</span> • No rights reserved</div></pre>
+      <!--<h3>Brandon-E-Ramirez Portfolio Website</h3>-->
+
+<code class="label-text" id="links"><span id="dc">Digital Craftsman (Creator/Programmer/Problem Solver)</span>
+<pre class="text-art" id="text-art">
+                                                                      <span class="pastel-color"> ________ </span>
+$$$$$$$\                                     $$\                     <span class="pastel-color"> |        \  </span>$$$$$$$\		            $$\                                
+$$  __$$\                                    $$ |                    <span class="pastel-color"> | $$$$$$$$  </span>$$  __$$\                         \__|                               
+$$ |  $$ | $$$$$$\  $$$$$$\  $$$$$$$\   $$$$$$$ | $$$$$$\  $$$$$$$\  <span class="pastel-color"> | $$__      </span>$$ |  $$ | $$$$$$\  $$$$$$\$$$$\  $$\  $$$$$$\   $$$$$$\  $$$$$$$$\  
+$$$$$$$\ |$$  __$$\ \____$$\ $$  __$$\ $$  __$$ |$$  __$$\ $$  __$$\ <span class="pastel-color"> | $$  \     </span>$$$$$$$  | \____$$\ $$  _$$  _$$\ $$ |$$  __$$\ $$  __$$\ \____$$  | 
+$$  __$$\ $$ |  \__|$$$$$$$ |$$ |  $$ |$$ /  $$ |$$ /  $$ |$$ |  $$ |<span class="pastel-color"> | $$$$$     </span>$$  __$$<  $$$$$$$ |$$ / $$ / $$ |$$ |$$ |  \__|$$$$$$$$ |  $$$$ _/  
+$$ |  $$ |$$ |     $$  __$$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |<span class="pastel-color"> | $$___     </span>$$ |  $$ |$$  __$$ |$$ | $$ | $$ |$$ |$$ |      $$   ____| $$  _/    
+$$$$$$$  |$$ |     \$$$$$$$ |$$ |  $$ |\$$$$$$$ |\$$$$$$  |$$ |  $$ |<span class="pastel-color"> | $$     \  </span>$$ |  $$ |\$$$$$$$ |$$ | $$ | $$ |$$ |$$ |      \$$$$$$$\ $$$$$$$$\  
+\_______/ \__|      \_______|\__|  \__| \_______| \______/ \__|  \__|<span class="pastel-color">  \$$$$$$$$  </span>\__|  \__| \_______|\__| \__| \__|\__|\__|       \_______|\________| v1.0.2
+
+</pre> 
+    <div class="command-sym">Hello world! Welcome to my beautiful website fellow humans and bots...</div>
+</code>                                                                                                                                                   
+<br>          
+
+<span class="default-text" id="intro"> 
+This is an interactive retro terminal portfolio! Please type in commands and press "Enter" to <br> 
+uncover more information about its creator and work. Here you will find my personal projects, <br>
+technical blog posts, and other random stuff I've been working on lately...feel free to reach out to me!<br>
+<br>
+Type <span class="glow">"help"</span> for a list of available commands<br>
+This project is now open source, type 't-repo' to check it out<br>
+For a simplified version, type 's'<br>
+
+<!--Output stream will be displayed here, without nodes (dynamically created elements) previous contents wil be replaced each time a command is entered-->
+<p id="outputField"></p>
+
+<span class="command-container">
+    <!--Appears after every time a command is executed-->
+    <span class="cmnd-prompt" id="cmnd-prompt">guest@brandon-term.com:<span class="dir">/home$ ~ </span>&nbsp;</span>
+    <input class="inputText"
+        type="text"
+        id="inputField"
+        name="defaultInput"
+        maxlength="50"
+        autocomplete="off"
+        autofocus>
+        <div class="blinking-cursor"></div>
+</span>
+
+<div class="divSpace" id="divSpace">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+  <br class="lb">
+</div>
+
+
+
+
+<span id="nuFetchDiv">
+  <pre class="nufetch" id="neofetch"><br><br><br><br>
+    <div>                       .,,uod8B8bou,,.                                   <span><span class="label-text">Client: </span><span class="default-text">visitor-local-machine</span></span></div> 
+    <div>                 ..,uod8BBBBBBBBBBBBBBBBRPFT?l!i:.                       <span><span class="label-text">Operating System: </span><span class="default-text">Windows 11...(probably, bleh)</span></span></div>
+    <div>            ,=m8BBBBBBBBBBBBBBBRPFT?!||||||||||||||                      <span><span class="label-text">Kernel: </span><span class="default-text">beats me</span></span></div> 
+    <div>            !...:!TVBBBRPFT||||||||||!!^^""'   ||||                      <span><span class="label-text">Patience: </span><span class="default-text">running out</span></span></div> 
+    <div>            !.......:!?|||||!!^^""'            ||||                      <span><span class="label-text">Uptime: </span><span class="default-text">a few seconds?</span></span></div> </div> 
+    <div>            !.........||||                     ||||                      <span><span class="label-text">Packages: </span><span class="default-text">unknown</span></span></div>        
+    <div>            !.........||||  >$                 ||||                      <span><span class="label-text">Shell: </span><span class="default-text">nshell</span></span></div>
+    <div>            !.........||||                     ||||                      <span><span class="label-text"></span>************************************************</span></div>   
+    <div>            !.........||||                     ||||                      <span><span class="label-text">Resolution: </span><span class="default-text">1920 x 1080 (hopefully..)</span></span> </div> 
+    <div>            !.........||||                     ||||                      <span><span class="label-text">DE: </span><span class="non-italic">💡</span></span></div> 
+    <div>            !.........||||                     ||||                      <span><span class="label-text">WM: </span><span class="default-text">i3 window manager</span></span></div> 
+    <div>            `.........||||                    ,||||                      <span><span class="label-text">Terminal: </span><span class="default-text">RTermEmulator v1.0</span></span></div> 
+    <div>             .;.......||||               _.-!!|||||                      <span><span class="label-text"></span>************************************************</span></div> 
+    <div>      .,uodWBBBBb.....||||       _.-!!|||||||||!:'                       <span><span class="label-text">Date: </span><span class="default-text">August 10th, 2023</span></span></div> 
+    <div>   !YBBBBBBBBBBBBBBb..!|||:..-!!|||||||!iof68BBBBBb....                  <span><span class="label-text">Weather: </span><span class="default-text">La Marque: 20°F/-6.6°C</span></span></div> 
+    <div>   !..YBBBBBBBBBBBBBBb!!||||||||!iof68BBBBBBRPFT?!::   `.                <span><span class="label-text">Public IP: </span><span class="default-text">86.152.213.095</span></span></div> 
+    <div>   !....YBBBBBBBBBBBBBBbaaitf68BBBBBBRPFT?!:::::::::     `.              <span><span class="label-text">TO DO: </span><span class="default-text">make this website better</span></span></div> 
+    <div>   !......YBBBBBBBBBBBBBBBBBBBRPFT?!::::::;:!^"`;:::       `.                                                  </div> 
+    <div>   !........YBBBBBBBBBBRPFT?!::::::::::^''...::::::;         iBBbo.             <span><span class="pastel-color">close the world, </span><span class="reflected-text" id="flip-span">open the next...</span></span></div> 
+    <div>   `..........YBRPFT?!::::::::::::::::::::::::;iof68bo.      WBBBBbo.    <span class="command-sym">================================================</span></div> 
+    <div>     `..........:::::::::::::::::::::::;iof688888888888b.     `YBBBP^'   <span class="command-sym">| [][] _____________________________ [_][_][_] |</span></div> 
+    <div>       `........::::::::::::::::;iof688888888888888888888b.     `        <span class="command-sym">| [][] [_][_][_] [_][_][_][_] [_][_] [_][_][_] |</span></div> 
+    <div>         `......:::::::::;iof688888888888888888888888888888b.            <span class="command-sym">|                                              |</span></div> 
+    <div>           `....:::;iof688888888888888888888888888888888899fT!           <span class="command-sym">| [][] [][][][][][][][][][][][][][_] [][][][]  |</span></div> 
+    <div>             `..::!8888888888888888888888888888888899fT|!^"'             <span class="command-sym">| [][] [_][][][][][][][][][][][][][] [][][][]  |</span></div>     
+    <div>               `' !!988888888888888888888888899fT|!^"'                   <span class="command-sym">| [][] [__][][][][][][][][][][][][_] [][][][]  |</span></div>    
+    <div>                   `!!8888888888888888899fT|!^"'                         <span class="command-sym">| [][] [___][][][][][][][][][][][__] [__][][]  |</span></div> 
+    <div>                     `!988888888899fT|!^"'                               <span class="command-sym">|          [_][______________][_]              |</span></div> 
+    <div>                       `!9899fT|!^"'                                     <span class="command-sym">|______________________________________________|</span></div> 
+    <div>                         `!^"'                                                                                                                            </div> 
+  </pre>
+
+  <span>    
+<!--<img src="/assets/images/colorschemes/grub-pallete.png" class="colorscheme-img" alt="gruvbox color scheme">-->
+<img  class="stats" width="25%" src="https://github-readme-stats-sigma-five.vercel.app/api?username=brandon-e-ramirez&rank_icon=percentile&show_icons=true&theme=monokai&card_width=230&rank_icon=percentile&show_icons=true&include_all_commits-true"&rank_icon=percentile/>
+<img  class="stats" height="183em" src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs?username=brandon-e-ramirez&show_icons=true&locale=en&layout=compact&theme=ayu-mirage&card_width=240"/>
+  </span>  
+</span>
+
+<div class="bottomnav">
+  <span class="leftBottomNav">
+    <span class="active">Now listening to:</span>
+    <button onclick="playRandomSong()" id="playButton">audio void</button>  
+    <span id="theme">Theme:NuBox</span>
+    <span id="network"></span> <!--display options for changing theme, accessability settings (font, size, contrast, etc.)-->
+    <span id="charge"></span>
+    <span id="cpu"></span>
+    <span id="id"></span>
+    <span id="uptime"></span> 
+  </span>
+
+  <span class="rightBottomNav" id="parentSpanBottom">
+  <span id="time" class="bottomRightInnerSpan"></span>
+  <span id="calendar" class="bottomRightInnerSpan"></span>
+  <span id="shell" class="bottomRightInnerSpan">shell:nshell</span>
+  <span id="encoding" class="bottomRightInnerSpan">UTF-8</span>
+  <span id="quit" class="bottomRightInnerSpan">quit</span>
+  </span>
+</div> 
+<!--
+<div>
+  <h2>Small Projects/Scripts</h2>
+  <ul>
+  <li>  <a href="https://onecompiler.com/javascript/3z85ryuhm" target="_blank" class="links">Simple JS Password Generator</a></li>
+  <li> <a href="https://editor.p5js.org/Brandon-E-Ramirez/sketches/0ereGjo4h" target="_blank" class="links">p5.js: colorful_circles</a></li>
+</ul>
+</div>
+-->
+
+<audio id="myAudio" controls hidden>
+  Your browser does not support the audio element.
+</audio>
+
+<!--Button is hidden from the user at all times, enter must be pressed when 'writting in to standard I/O CLI'-->
+<button id="myBtn" onclick="displayText(document.getElementById('inputField').value)" hidden>Button</button>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
