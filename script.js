@@ -230,6 +230,7 @@ function displayText(str) {
       link.download = 'Brandon_Ramirez_Resume' || 'document.pdf'; // Set the default filename if not provided
       link.click();
       div.innerHTML = resume_txt;
+      div.style.color = "#1da1f2";
       output.append(div);
       rstInput();
       break;
