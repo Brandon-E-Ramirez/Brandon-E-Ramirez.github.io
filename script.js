@@ -22,10 +22,10 @@ let help_txt =
 &nbsp;&nbsp;      "mini_projects":"list of small, simple projects",<br>   
 &nbsp;&nbsp;      "posts":"scientific/technical articles I've written",<br>
 &nbsp;&nbsp;      "nufetch":"system information tool",   <br>
-&nbsp;&nbsp;      "banner":"print ascii art",   <br>
+&nbsp;&nbsp;      "banner":"print ascii art name",   <br>
 &nbsp;&nbsp;      "paper":"change wallpaper",<br>
-&nbsp;&nbsp;      "dark":"dark website theme",<br>
-&nbsp;&nbsp;      "light":"default theme",<br>
+&nbsp;&nbsp;      "dark":"dark website theme (default)",<br>
+&nbsp;&nbsp;      "light":"light theme",<br>
 &nbsp;&nbsp;      "sound":"play music",<br>
 &nbsp;&nbsp;      "stop":"stop music",   <br>
 &nbsp;&nbsp;      "fortune":"receive a fortune",  <br> 
@@ -92,7 +92,40 @@ let date_cal_weather_txt = `<br> Show local weather and time information<br>`;
 let projects_txt = `<br> List of projects, links, and instructions<br>`;
 let mini_projects_txt = ` <br> List/Redirect to mini-projects<br>`;
 let technical_posts_txt = `<br> Papers, scientific documents, technical posts, its all fun!<br>`;
-let banner_txt = `<br> Print initial introduction + ascii art<br>`;
+
+
+
+let preBanner = document.createElement('pre');
+preBanner.textContent = `
+                                                                       ________ 
+$$$$$$$\                                     $$\                      |        \  $$$$$$$\		            $$\                                
+$$  __$$\                                    $$ |                     | $$$$$$$$  $$  __$$\                         \__|                               
+$$ |  $$ | $$$$$$\  $$$$$$\  $$$$$$$\   $$$$$$$ | $$$$$$\  $$$$$$$\   | $$__      $$ |  $$ | $$$$$$\  $$$$$$\$$$$\  $$\  $$$$$$\   $$$$$$\  $$$$$$$$\  
+$$$$$$$\ |$$  __$$\ \____$$\ $$  __$$\ $$  __$$ |$$  __$$\ $$  __$$\  | $$  \     $$$$$$$  | \____$$\ $$  _$$  _$$\ $$ |$$  __$$\ $$  __$$\ \____$$  | 
+$$  __$$\ $$ |  \__|$$$$$$$ |$$ |  $$ |$$ /  $$ |$$ /  $$ |$$ |  $$ | | $$$$$     $$  __$$<  $$$$$$$ |$$ / $$ / $$ |$$ |$$ |  \__|$$$$$$$$ |  $$$$ _/  
+$$ |  $$ |$$ |     $$  __$$ |$$ |  $$ |$$ |  $$ |$$ |  $$ |$$ |  $$ | | $$___     $$ |  $$ |$$  __$$ |$$ | $$ | $$ |$$ |$$ |      $$   ____| $$  _/    
+$$$$$$$  |$$ |     \$$$$$$$ |$$ |  $$ |\$$$$$$$ |\$$$$$$  |$$ |  $$ | | $$     \  $$ |  $$ |\$$$$$$$ |$$ | $$ | $$ |$$ |$$ |      \$$$$$$$\ $$$$$$$$\  
+\_______/ \__|      \_______|\__|  \__| \_______| \______/ \__|  \__|  \$$$$$$$$  \__|  \__| \_______|\__| \__| \__|\__|\__|       \_______|\________| v1.0.2 
+`;
+
+// Create the main banner text
+
+let banner_txt = `<br>
+Hello world! Welcome to my beautiful website fellow humans and bots...<br>
+<br>
+This is an interactive retro terminal portfolio! Please type in commands and press "Enter" to<br>
+uncover more information about its creator and work. Here you will find my personal projects,<br>
+technical blog posts, and other random stuff I've been working on lately...feel free to reach out to me!<br>
+<br>
+Type "help" for a list of available commands<br>
+This project is now open source, type 't-repo' to check it out<br>
+For a simplified version, type 's'<br>
+`;
+
+
+
+
+
 let fortune_txt = `<br> Receive a ✨fortune✨<br>`;
 let secret_txt = `<br> Easter egg? Cicada type stuff coming soon <br>`;
 let clear_text = `The terminal has been cleared!`;
@@ -133,6 +166,10 @@ UNIX OS 22.04.1. LTS localhost <br><br>
 console.log("Hello world!");
 const validCommands = ["load", "whoami", "resume", "nufetch", "paper", "banner", "help", "fortune", "secret", "projects", "dark", "light","posts", "mini_projects", "t-repo", "clear", "s", "sound", "stop", "echo", "hist"];
 var nfetch = document.getElementById("nuFetchDiv");
+var textArt = document.getElementById("text-art");
+var textArtClone = textArt.cloneNode(true);
+
+
 nfetch.style.display = "none"; //does not exist on the page at all
 
 var body = document.querySelector("body");
@@ -244,8 +281,15 @@ function displayText(str) {
       break;
     case "banner":
       cmndHist();
+
+      var tArt = document.createElement("div");
+      tArt = textArtClone;
+      tArt.style.display = "block"
+      output.append(tArt);
+
       div.innerHTML = banner_txt;
-      output.append(div);
+      output.append(div)
+
       rstInput();
       break;
     case "help":  
@@ -269,7 +313,7 @@ function displayText(str) {
     case "light":
       cmndHist();
       output.style.color = "#ebdbb2";
-      body.style.backdropFilter = "blur(10px) brightness(60%)";
+      body.style.backdropFilter = "blur(10px) brightness(50%)";
       rstInput();
       break;
     case "secret":
@@ -571,6 +615,7 @@ o++;
 
 /*'/assets/images/backgrounds/use/1.jpg',*/
 const backgrounds = [
+'/assets/images/backgrounds/use/0.webp',
 '/assets/images/backgrounds/use/1.jpg',
 '/assets/images/backgrounds/use/4.webp',
 '/assets/images/backgrounds/use/17.webp',

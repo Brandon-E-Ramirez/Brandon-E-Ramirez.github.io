@@ -35,13 +35,13 @@ body{
     bottom: 0;
     left: 0;
     overflow: auto;
-    backdrop-filter: blur(10px) brightness(60%);
+    backdrop-filter: blur(10px) brightness(50%);
     transform: scale(1.0);
 
 }
 
 body:hover{
-  backdrop-filter: brightness(50%) blur(12px);
+  backdrop-filter: brightness(20%) blur(5px);
 }
 
 a:hover {
