@@ -1,0 +1,189 @@
+\documentclass[notitlepage,a4paper,oneside,article,table]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage[margin=1.0in]{geometry} %changes marges
+\usepackage{minted} % src code highlighting: (https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted)
+\usemintedstyle{emacs} % code syntax highlighting style
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pgfplots} 
+\pgfplotsset{width=10cm, compat=1.9} %compat allows src code compilation
+\usepgfplotslibrary{external} % speeds up compilation, we will externalize the figures
+\tikzexternalize
+\usepackage{graphicx}% allows the utilization of images
+\graphicspath{ {./images/} }
+\usepackage{placeins} %makes images stay in their own section/subsection, brilliant!
+\usepackage[document]{ragged2e}
+\usepackage{setspace}
+\usepackage{tensor}
+\usepackage{blindtext}
+\usepackage{cancel}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyvrb}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\usepackage{cancel}
+
+
+\usepackage{listings}
+
+\usepackage{xcolor}
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=t,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=2pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=violet,
+    filecolor=Magenta,      
+    urlcolor=blue,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+    
+\urlstyle{same}
+
+
+
+
+
+\title {University of Houston - Clear Lake [Summer 2023] \vspace{0.005cm}
+\colorbox{SkyBlue}{CENG 3151.01: Lab for Computer Architecture} \\ \vspace{0.65cm}
+\colorbox{SpringGreen}{Why do I want to be a computer scientist?}}
+
+\author{Submitted by: Brandon E Ramirez}
+\date{Date: 7/20/2023}
+
+
+\begin{document}
+
+%header properties:
+% Set the page style to "fancy"...
+\pagestyle{fancy}
+%... then configure it.
+
+% Clear all headers and footers (see also \fancyhf{})
+\fancyhead{}\fancyfoot{}
+
+% Set the header and footer for Even
+% pages but omit the zone (L, C or R)
+\fancyhead[R]{Brandon E Ramirez}
+\fancyhead[L]{CENG 3151 - 01: Pagan Santiago, Miguel, M.S.C.E}
+
+
+
+\fancyfoot[L]{Why do I want to be a computer scientist?}
+\fancyfoot[R]{Page No. \thepage}
+
+\maketitle
+
+\begin{center}
+       \textbf{Due: Sunday, July $23^{rd}$, 2023}\\
+       \textsc{Student ID: 1952649}
+       \vspace{0.2cm}\\
+       
+       \textsc{Computer Engineering\\
+University of Houston – Clear Lake\\
+Houston, Texas 77058}\\
+
+%\vspace{0.2cm}\\
+
+\begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=0.25\textwidth]{images/logo.png}
+\end{figure}
+\FloatBarrier
+   \end{center}
+\doublespacing
+
+       \newpage %pushes all the data to the next page
+
+
+%used to render empty space between text, this separates the text from the first page and the problems
+\vspace{1cm}
+
+%\newpage
+%\small \tableofcontents
+%\small \listoffigures
+%\small \lstlistoflistings
+
+%****************************start document here****************************
+
+%\vspace{0.25cm}
+
+\iffalse
+%**********************multi-line comment*****************************
+keep notes here
+
+%*********************************************************************
+\fi
+
+\section{Introduction}
+I decided to study computer science during the last month of my senior year in high school. I had no prior knowledge of the field of study but I knew that working in the industry required a need to be creative, have attention to detail, and proficiency in many technologies and technical concepts. It didn't hurt knowing that working in tech payed well and that some of the larger companies offered competitive benefits, perks, desirable office culture, awesome work-life balance, etc. I started my studies at my local community college (Galveston College) and transferred to UH-CL after a year or so. 
+
+\section{Where it started}
+I took a programming course (probably AP CS Principles) in my last semester of high school that had just started being offered. My teacher at the time had recently begun teaching as well. He had us sit down on the first day and shared with us what his life was like before he had pulled his life together. He had been plagued by an addiction to alcohol and other substances by his late teens. He had spent his first couple of years as a young adult stealing, and lying from his friends and family so the he could partake in his vices. He had lost contact with the people he loved and expected to live a short life with no purpose, he had confessed that his life was a wreck at this point. But for whatever reason he had one day decided to change and managed to put himself through school and managed to graduate from university. 
+\vspace{0.5cm}
+
+He had a complete change in character and had developed a satisfaction for learning and improving himself, qualities I had always aspired to have mastery in. I uniquely remember him saying that we were capable of whatever we set our minds out to do and that he was a living example of that. I had a friend that I considered smarter than me that was always talking about coding, he seemed knowledgeable and genuinely fascinated by it. I routinely asked him about it during our free time in the library during lunch and I couldn't help but get excited over it as well. I hadn't met any other student with the fervent interest he had for academia, I was certain the industry was full to the brim of opportunities, challenges, and unbounded potential. It was almost certainly my teachers enthusiasm for teaching coupled with my friends introduction to computing sciences that compelled me to pursue this discipline.  
+
+\section{Developement}
+When I started getting into the CS curriculum, I had realized that computer science encompassed much more than just coding. Yes, you need a thorough grasp of mathematics, technical writing, and other expected skills, but you also needed to understand the theory of computer systems, its algorithms, and the methods of implementing solutions through various technologies such as relational databases, computer networks, telecommunications systems, ISA(architecture, assembly), game development, etc. The structured and multi-disciplinary nature of university had inclined me to expose myself to topics, technologies, and like-minded peers that helped me build a solid foundation from which to build my career and base future choices from. 
+
+\section {The future}
+As I prepare to graduate this fall I have this feeling of excitement and uncertainty, I know that I need to stand out from other applicants. I need to prepare for a multitude of technical interviews, 
+create dazzling projects for my developer portfolio, and revise my resume/GitHub page. I believe I usually "over prepare" for exams and at this point consider it a skill. But I don't know if that will be enough to land a job at a FAANG company. I haven't made any exceptional projects to put on my resume yet and I'm not 100\% sure what type of responsibilities/companies I prefer to work at. I am still trying to sort it out and will probably determine it towards the end of this year. I look forward to the career fair held at the beginning of every semester and I'm planning to apply to as many job openings as I can (even the ones I'm not exactly qualified for) through other job fairs and sites like Indeed and Linked-In. I know it's rough even landing an interview nowadays, but I will continue to persist, continue improving, and do my best at whatever I set my mind to do. I'm sure that the only way to succeed (through "self-made" means) is to want the goal more than everyone else and to persevere.
+
+\section{Conclusion} 
+At this point I would say my interests (broadly) include back-end engineering, robotics, and computer graphics. I'm sure that once I start working I will have a deep sense of fulfilment creating software that is useful and provides unique experiences to it's end users. I'm glad I studied computer science at the University of Houston - Clear Lake. I learned a little about everything and have had the opportunity to develop interests in many sub-disciplinary fields of study. Compared to self-taught developers, I'm glad I had the opportunity to gradually learn about information technology in detail from knowledgeable professors and receive feedback on my ability to produce satisfactory results. I hope to get a masters one day and maybe even a PhD, but I will let my future employer satisfy my itch on their dime.
+
+\iffalse
+%**********************multi-line comment*****************************
+\section{References}
+\begin{itemize}
+  \item \textcolor{red}{}
+\end{itemize}
+
+\section{Appendices}
+\begin{itemize}
+  \item \textcolor{red}{N/A}
+\end{itemize}
+%*********************************************************************
+\fi
+
+
+
+\lstset{style=mystyle}
+\begin{lstlisting}[language=VHDL, caption=]
+
+\end{lstlisting}
+
+\end{document}
+

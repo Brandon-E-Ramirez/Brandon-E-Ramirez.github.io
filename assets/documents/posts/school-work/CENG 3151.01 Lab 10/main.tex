@@ -1,0 +1,625 @@
+\documentclass[notitlepage,a4paper,oneside,article,table]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage[margin=1.0in]{geometry} %changes marges
+\usepackage{minted} % src code highlighting: (https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted)
+\usemintedstyle{emacs} % code syntax highlighting style
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pgfplots} 
+\pgfplotsset{width=10cm, compat=1.9} %compat allows src code compilation
+\usepgfplotslibrary{external} % speeds up compilation, we will externalize the figures
+\tikzexternalize
+\usepackage{graphicx}% allows the utilization of images
+\graphicspath{ {./images/} }
+\usepackage{placeins} %makes images stay in their own section/subsection, brilliant!
+\usepackage[document]{ragged2e}
+\usepackage{setspace}
+\usepackage{tensor}
+\usepackage{blindtext}
+\usepackage{cancel}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyvrb}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\usepackage{cancel}
+
+
+\usepackage{listings}
+
+\usepackage{xcolor}
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=t,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=2pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=violet,
+    filecolor=Magenta,      
+    urlcolor=blue,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+    
+\urlstyle{same}
+
+
+
+
+
+\title {University of Houston - Clear Lake [Summer 2023] \vspace{0.005cm}
+\colorbox{SkyBlue}{CENG 3151.01: Lab for Computer Architecture} \\ \vspace{0.65cm}
+\colorbox{SpringGreen}{Lab 10 (Final Project): 32-bit ALU Design}}
+
+\author{Submitted by: Brandon E Ramirez}
+\date{Date: 7/20/2023}
+
+
+\begin{document}
+
+%header properties:
+% Set the page style to "fancy"...
+\pagestyle{fancy}
+%... then configure it.
+
+% Clear all headers and footers (see also \fancyhf{})
+\fancyhead{}\fancyfoot{}
+
+% Set the header and footer for Even
+% pages but omit the zone (L, C or R)
+\fancyhead[R]{Brandon E Ramirez}
+\fancyhead[L]{CENG 3151 - 01: Pagan Santiago, Miguel, M.S.C.E}
+
+
+
+\fancyfoot[L]{Lab 10 (Final Project): 32-bit ALU Design}
+\fancyfoot[R]{Page No. \thepage}
+
+\maketitle
+
+\begin{center}
+       \textbf{Due: Thursday, July $27^{th}$, 2023}\\
+       \textsc{Student ID: 1952649}
+       \vspace{0.2cm}\\
+       
+       \textsc{Computer Engineering\\
+University of Houston – Clear Lake\\
+Houston, Texas 77058}\\
+
+%\vspace{0.2cm}\\
+
+\begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=0.25\textwidth]{images/logo.png}
+\end{figure}
+\FloatBarrier
+   \end{center}
+\doublespacing
+
+       \newpage %pushes all the data to the next page
+
+
+%used to render empty space between text, this separates the text from the first page and the problems
+\vspace{1cm}
+
+\newpage
+\small \tableofcontents
+\small \listoffigures
+\small \lstlistoflistings
+
+%****************************start document here****************************
+
+\vspace{0.25cm}
+
+\iffalse
+%**********************multi-line comment*****************************
+keep notes here
+
+%*********************************************************************
+\fi
+
+\section{Abstract}
+The Arithmetic Logic Unit (ALU) is a crucial component of a computer's central processing unit (CPU). It is responsible for performing arithmetic and logical operations necessary for processing data and executing instructions. The ALU's primary purpose is to carry out calculations and make decisions based on the data it receives from the computer's registers and memory. Some functions of the ALU are the following:
+
+\begin{enumerate}
+    \item Arithmetic Operations: The ALU can perform basic arithmetic calculations such as addition, subtraction, multiplication, and division. 
+
+    \item Logical Operations: The ALU can execute logical operations such as AND, OR, NOT, and XOR. These operations are vital for making decisions and determining the flow of a program based on Boolean conditions.
+
+    \item Data Comparison: The ALU can compare two pieces of data and set flags based on the result of the comparison. These flags are used to indicate whether data is equal, not equal, greater than, or less than, enabling conditional branching and control flow in programs.
+
+    \item Bit Shift Operations: The ALU can shift the bits of binary data left or right, this can be done via "arithmetic" or "logical" shifting.
+
+    \item Increment and Decrement: The ALU can increment or decrement the value of a data element by 'one' (usually done one bit at a time).
+
+\end{enumerate}
+
+The ALU serves as the "computational engine" of a CPU, responsible for carrying out essential arithmetic, logical, and comparison operations necessary to execute programs and process data.
+
+\section{Introduction/Goals}
+The purpose of this lab is to design a 32-bit ALU capable of performing logical, arithmetic, shifting, loading, and storing operations with 2x 32-bit inputs. We need to be able to select the operation(s) using a control input and enable a "carry-in" input derived from preceding computations/operations. The ALU needs to output a 32-bit result and a carry-out. We are going to replicate this behavior with the hardware description language "VHDL" and Vivado to define, test, and generate time diagrams + schematics. The purpose of this lab is to design a 32-bit ALU with VHDL and Vivado hardware design software.
+
+\section{Requirements}
+Here are the requirements: Design a 32-bit ALU which can perform arithmetic and logic operations. The design must be able to perform the following: 
+\begin{enumerate}
+    \item The design has two 32-bit inputs, input A and input B, they are unsigned binary numbers
+    \item Addition, increment, decrement and transfer (arithmetic operations) 
+    \item AND, OR, NOT, XOR (logical operations) 
+    \item Right shift, left shift (shift operations) 
+    \item The design must have 4-bit select line called Operation Select, which would direct the unit as to which operation to perform 
+    \item The unit has a Carry-in and also a Carry-out. 
+\end{enumerate}
+The block diagram of this ALU is as shown below: 
+\begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/blk.png}
+    \caption{Black-box diagram}
+\end{figure}
+\FloatBarrier
+ 
+The interface of this design is as below: 
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+\begin{lstlisting}[language=VHDL, caption=I/O stream]
+            entity ALU_32Bits_Design is  	port( 
+            Reg_A     :  in std_logic_vector(31 downto 0); 
+            Reg_B     :  in std_logic_vector(31 downto 0); 
+            Op_Sel    :  in std_logic_vector(3 downto 0); 
+            Carry_In  :  in std_logic;   Carry_Out :  out std_logic; 
+            ALU_Out   :  out std_logic_vector(31 downto 0) 
+            ); 
+            end ALU_32Bits_Design; 
+\end{lstlisting}
+
+\begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=1\textwidth]{images/table.png}
+    \caption{32-bit ALU operations table}
+\end{figure}
+\FloatBarrier
+
+
+\section{Prelab}
+No Pre-Lab required for this lab.
+
+\section{Report Write-up/Implementation}
+
+We will use one src/design file and one test-bench file. Our code will use Reg-A, Reg-B, Op-Sel, Carry-In, Carry-Out, and ALU-Out to satisfy our design I/O requirements. We will use a series of if/else-statements and a single process to achieve this logic within our source file. First, we will create a process which takes Reg-A \& Reg-B as parameters, we do this to routinely check the contents of the registers. The first instruction we will implement is transfer, here we simply send input stream found in "Reg-A" to "ALU-Out". We implement this logic by using an if-statement which checks the contents of "Op-Sel" (Operation select); iff it equals "0000", then we know we will evaluate this particular operation. The same logic applies to the other operations. A series of if/elsif control structures will identify the appropriate operation to execute as shown in figure 2. Some novel challenges we encountered were converting register values to type 'unsigned' (increment/decrement/shift operations) and manually setting Carry-Out bit depending on contents of register when evaluating computations (increment). We used the intermediary signal "tmp-val" to assign Carry-Out value and ALU-Out in the addition operation. Shifting was done using a VHDL built-in function, the contents of Reg-A were shifted left/right based on the value stored in Reg-B and sent to ALU-Out using "std-logic-vector()".
+
+\subsection{Design Code/Design Diagrams}
+
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+\begin{lstlisting}[language=VHDL, caption=IC source/behavior file code]
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+use ieee.std_logic_unsigned.all;
+--use ieee.std_logic_unsigned.all;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity final_lab_src is
+    Port ( Reg_A : in std_logic_vector(31 downto 0);--capacity is 32-bits
+           Reg_B : in std_logic_vector(31 downto 0);--capacity is 32-bits
+           Op_Sel : in std_logic_vector(3 downto 0);--4 bit value indicates the type of operation performed
+           Carry_In : in STD_LOGIC;--carry from previous calculation
+           Carry_Out : out STD_LOGIC;--output carry from current calculation.
+           ALU_Out : out std_logic_vector(31 downto 0));
+end final_lab_src;
+
+architecture Behavioral of final_lab_src is
+
+signal tmp_val: std_logic_vector(32 downto 0); 
+
+begin
+
+process(Reg_A, Reg_B)
+begin
+
+-- TRANSFER
+if (Op_Sel = "0000") then
+    ALU_Out <= Reg_A;
+-- INCREMENT
+elsif (Op_Sel = "0001") then
+    if (unsigned(Reg_A) = x"ffffffff") then
+        ALU_Out <= std_logic_vector(unsigned(Reg_A) + 1);
+        Carry_Out <= '1';
+    else
+        ALU_Out <= std_logic_vector(unsigned(Reg_A) + 1);
+        Carry_Out <= '0';
+    end if;
+-- DECREMENT
+elsif (Op_Sel = "0010") then
+    ALU_Out <= std_logic_vector(unsigned(Reg_A) - 1);
+-- ADDITION
+elsif (Op_Sel = "0011") then
+    tmp_val <= ('0' & Reg_A) + ('0' & Reg_B) + Carry_In;
+    ALU_Out <= tmp_val(31 downto 0);
+    Carry_Out <= tmp_val(32);
+-- NOT
+elsif (Op_Sel = "0100") then
+    ALU_Out <= NOT Reg_A;
+-- AND
+elsif (Op_Sel = "0101") then
+    ALU_Out <= Reg_A AND Reg_B;
+-- OR
+elsif (Op_Sel = "0110") then
+    ALU_Out <= Reg_A OR Reg_B;
+-- XOR
+elsif (Op_Sel = "0111") then
+    ALU_Out <= Reg_A XOR Reg_B;
+-- ARITHMETIC SHIFT RIGHT
+elsif (Op_Sel = "1000" OR Op_Sel = "1001" OR Op_Sel = "1010" OR Op_Sel = "1011") then
+    ALU_Out <= std_logic_vector(shift_right(signed(Reg_A),to_integer(unsigned(Reg_B))));
+-- ARITHMETIC SHIFT LEFT
+elsif (Op_Sel = "1100" OR Op_Sel = "1101" OR Op_Sel = "1110" OR Op_Sel = "1111") then
+    ALU_Out <= std_logic_vector(shift_left(signed(Reg_A),to_integer(unsigned(Reg_B))));
+end if;    
+end process;
+end Behavioral;
+\end{lstlisting}
+
+
+
+\subsection{Schematic(s)}
+
+\begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=1\textwidth]{images/schematic.png}
+    \caption{Lab 8 generated schematic}
+\end{figure}
+\FloatBarrier
+
+
+\subsection{Test-bench}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
+\begin{lstlisting}[language=VHDL, caption=IC test-bench scr code]
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity final_lab_tb is
+--  Port ( );
+end final_lab_tb;
+
+architecture Behavioral of final_lab_tb is
+
+component final_lab_src is
+    Port ( Reg_A : in std_logic_vector(31 downto 0);
+           Reg_B : in std_logic_vector(31 downto 0);
+           Op_Sel : in std_logic_vector(3 downto 0);
+           Carry_In : in STD_LOGIC;
+           Carry_Out : out STD_LOGIC;
+           ALU_Out : out std_logic_vector(31 downto 0));
+end component;
+
+signal Reg_A : std_logic_vector(31 downto 0);
+signal Reg_B : std_logic_vector(31 downto 0);
+signal Op_Sel : std_logic_vector(3 downto 0);
+signal Carry_In : STD_LOGIC;
+signal Carry_Out : STD_LOGIC;
+signal ALU_Out : std_logic_vector(31 downto 0);
+
+begin
+uut: final_lab_src port map (Reg_A, Reg_B, Op_Sel, Carry_In, Carry_Out, ALU_Out);
+
+process
+begin
+-- A 
+Reg_A <= x"00001111";
+Reg_B <= x"11000101";
+Op_Sel <= "0000";
+Carry_In <= '0';
+wait for 10ns;
+
+--A + 1
+Reg_A <= x"11111111";
+Reg_B <= x"00001111";
+Op_Sel <= "0001";
+Carry_In <= '0';
+wait for 10ns;
+
+Reg_A <= x"00001111";
+Reg_B <= x"10101010";
+Op_Sel <= "0001";
+Carry_In <= '0';
+wait for 10ns;
+
+Reg_A <= x"10101010";
+Reg_B <= x"00000101";
+Op_Sel <= "0001";
+Carry_In <= '0';
+wait for 10ns;
+
+Reg_A <= x"11110000";
+Reg_B <= x"00010101";
+Op_Sel <= "0001";
+Carry_In <= '0';
+wait for 10ns;
+
+--A - 1
+Reg_A <= x"11111111";
+Reg_B <= x"00000101";
+Op_Sel <= "0010";
+Carry_In <= '0';
+wait for 10ns;
+
+Reg_A <= x"00001111";
+Reg_B <= x"00000101";
+Op_Sel <= "0010";
+Carry_In <= '0';
+wait for 10ns;
+
+Reg_A <= x"10101010";
+Reg_B <= x"00000101";
+Op_Sel <= "0010";
+Carry_In <= '0';
+wait for 10ns;
+
+Reg_A <= x"00000000";
+Reg_B <= x"00000101";
+Op_Sel <= "0010";
+Carry_In <= '0';
+wait for 10ns;
+
+--A + B + Carry_In
+Reg_A <= x"11111111";
+Reg_B <= x"11110101";
+Op_Sel <= "0011";
+Carry_In <= '1';
+wait for 10ns;
+
+Reg_A <= x"00001111";
+Reg_B <= x"00001111";
+Op_Sel <= "0011";
+Carry_In <= '0';
+wait for 10ns;
+
+Reg_A <= x"10101010";
+Reg_B <= x"11110101";
+Op_Sel <= "0011";
+Carry_In <= '0';
+wait for 10ns;
+
+Reg_A <= x"11110000";
+Reg_B <= x"01010101";
+Op_Sel <= "0011";
+Carry_In <= '1';
+wait for 10ns;
+
+--NOT A
+Reg_A <= x"10101111";
+Reg_B <= x"11110101";
+Op_Sel <= "0100";
+Carry_In <= '1';
+wait for 10ns;
+
+Reg_A <= x"00001111";
+Reg_B <= x"10101111";
+Op_Sel <= "0100";
+Carry_In <= '0';
+wait for 10ns;
+
+
+--A AND B
+Reg_A <= x"10101010";
+Reg_B <= x"11110101";
+Op_Sel <= "0101";
+Carry_In <= '0';
+wait for 10ns;
+
+Reg_A <= x"11110000";
+Reg_B <= x"01010101";
+Op_Sel <= "0101";
+Carry_In <= '1';
+wait for 10ns;
+
+
+
+
+--A OR B
+Reg_A <= x"11111111";
+Reg_B <= x"11110101";
+Op_Sel <= "0110";
+Carry_In <= '1';
+wait for 10ns;
+
+Reg_A <= x"00001111";
+Reg_B <= x"00001111";
+Op_Sel <= "0110";
+Carry_In <= '0';
+wait for 10ns;
+
+
+--A XOR B
+Reg_A <= x"10101010";
+Reg_B <= x"11110101";
+Op_Sel <= "0111";
+Carry_In <= '0';
+wait for 10ns;
+
+Reg_A <= x"11110000";
+Reg_B <= x"01010101";
+Op_Sel <= "0111";
+Carry_In <= '1';
+wait for 10ns;
+
+
+--ALU_Out = Shift A to the right by 'B' amount
+Reg_A <= x"F0101010";
+Reg_B <= x"00000001";
+Op_Sel <= "1000";
+Carry_In <= '0';
+wait for 10ns;
+
+Reg_A <= x"11110000";
+Reg_B <= x"0000010A";
+Op_Sel <= "1010";
+Carry_In <= '1';
+wait for 10ns;
+
+--ALU_Out = Shift A to the left by 'B' amount
+Reg_A <= x"F0101010";
+Reg_B <= x"00000005";
+Op_Sel <= "1100";
+Carry_In <= '0';
+wait for 10ns;
+
+Reg_A <= x"11110000";
+Reg_B <= x"00000A0A";
+Op_Sel <= "1101";
+Carry_In <= '1';
+wait for 10ns;
+wait;
+
+end process;
+end Behavioral;
+\end{lstlisting}
+
+
+\subsection{Waveform/Results}
+The vertical yellow bar hovering over the time diagram sets the moment in which a specific combination of inputs/outputs occur. For the following time diagrams I will describe the circuits behavior by discussing the I/O streams involved, the logic and the expected output. The expected behavior holds for all test-cases.
+\vspace{0.5cm}
+
+
+
+At 20ns we see that the contents of Reg-A are sent directly to ALU-out, as expected.
+
+%transfer
+\begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=1\textwidth]{images/transfer&increment_TD.png}
+    \caption{Timing diagram demonstrating transfer \& increment operations}
+\end{figure}
+\FloatBarrier
+We see that the binary string in Reg-A is incremented by '1' as expected.
+%increment
+\begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=1\textwidth]{images/increment&decrement_TD.png}
+    \caption{Timing diagram demonstrating increment \& decrement operations}
+\end{figure}
+\FloatBarrier
+We see that the binary string in Reg-A is decremented by '1' as expected.
+%decrement
+\begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=1\textwidth]{images/decrement_TD.png}
+    \caption{Timing diagram demonstrating decrement operation}
+\end{figure}
+\FloatBarrier
+Here we add the contents of Reg-A ("4369", $100ns$), Reg-B("4369", $110ns$), and Carry-In('0'). Gives us the result "8738" which is valid.
+%addition
+\begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=1\textwidth]{images/addition_TD.png}
+    \caption{Timing diagram demonstrating addition operation}
+\end{figure}
+\FloatBarrier
+
+%addition
+%\begin{figure}[h] % 'place image here (float)'
+%    \centering
+%    \includegraphics[width=1\textwidth]{images/addition2_TD.png}
+%    \caption{Timing diagram demonstrating addition operation}
+%\end{figure}
+%\FloatBarrier
+Here we see that the op-select codes '0100'(NOT) gives us the expected ALU-Out value at around \~144ns
+\begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=1\textwidth]{images/not&and_TD.png}
+    \caption{Timing diagram demonstrating not \& and operations}
+\end{figure}
+\FloatBarrier
+Here we see that the op-select codes '0101'(AND) \& '0110'(OR) give us the expected ALU-Out values at around 164ns and 174ns respectively
+%or
+\begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=1\textwidth]{images/and&or_TD.png}
+    \caption{Timing diagram demonstrating and \& or operations}
+\end{figure}
+\FloatBarrier
+At around 194ns we see that XOR operation behaves as expected, particularly at the 4th MSB.
+%xor
+\begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=1\textwidth]{images/xor&shiftright_TD.png}
+    \caption{Timing diagram demonstrating xor \& shift right operations}
+\end{figure}
+\FloatBarrier
+With Op-Select value '1010'(shift right) the contents of Reg-A are shifted left by the amount declared in Reg-B, At 224ns we see ALU-Out contains all zeros because the shift amount was too great. At 232ns we see that '1100'(shift left) shifts Reg-A's contents by '101' (Reg-B) to the left 5-bits which is what we observe in ALU-out. 
+%shift left
+\begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=1\textwidth]{images/shiftright&shiftleft_TD.png}
+    \caption{Timing diagram demonstrating shift right \& shift right operations}
+\end{figure}
+\FloatBarrier
+
+
+\section{Conclusion} 
+In conclusion, the Arithmetic Logic Unit (ALU) is a fundamental component of a computer's central processing unit (CPU) responsible for executing arithmetic, logical, and comparison operations on data. Acting as the computational heart of the CPU, the ALU performs tasks like addition, subtraction, multiplication, and division, as well as logical operations such as AND, OR, NOT, and XOR. It also handles data comparison, bit shift operations, and increment/decrement functions. Working in conjunction with the control unit, the ALU retrieves data from registers, processes it through micro-operations, and stores the results back into the registers. Its key role in implementing essential computer operations makes it the heart of the computer; executing programs and manipulating data in all modern computing systems.
+
+\iffalse
+%**********************multi-line comment*****************************
+\section{References}
+\begin{itemize}
+  \item \textcolor{red}{}
+\end{itemize}
+
+\section{Appendices}
+\begin{itemize}
+  \item \textcolor{red}{N/A}
+\end{itemize}
+%*********************************************************************
+\fi
+
+\lstset{style=mystyle}
+\begin{lstlisting}[language=VHDL, caption=]
+
+\end{lstlisting}
+
+\end{document}

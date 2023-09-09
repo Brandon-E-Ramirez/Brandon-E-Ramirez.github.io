@@ -347,12 +347,50 @@ font-family:'DroidSansM Nerd Font Mono', monospace;
 }
 
 
+.blogPosts{
+  border: #b8bb26;
+  border-style: solid;
+  border-width: 3px;;
+  padding: 10px;
+  width: 1000px;
+}
+
+/*
+.blogPosts p:hover{
+
+} 
+*/
+
+
+#mini-projects-div{
+  border: #fd971f;
+  border-style: solid;
+  border-width: 3px;
+  width: 1000px;
+  padding: 10px;
+}
+
+#mini-projects-div a{
+  color: #f92672;
+  
+}
+
+#mini-projects-div a:hover{
+  color: #000000;
+  background-color: #f92672
+}
 
 
 
+#postsDiv a{
+  color: #f92672;
 
+}
 
-
+#postsDiv a:hover{
+  color: #000000;
+  background-color: #f92672
+}
 
 
 

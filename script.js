@@ -23,8 +23,8 @@ let help_txt =
 &nbsp;&nbsp;      "projects" : "list of projects",<br>
 &nbsp;&nbsp;      "mini_projects" : "list of small, simple projects",<br>   
 &nbsp;&nbsp;      "posts" : "scientific/technical articles I've written",<br>
+&nbsp;&nbsp;      "banner" : "print ascii art name + site instructions",   <br>
 &nbsp;&nbsp;      "nufetch" : "system information tool",   <br>
-&nbsp;&nbsp;      "banner" : "print ascii art name",   <br>
 &nbsp;&nbsp;      "paper" : "change wallpaper",<br>
 &nbsp;&nbsp;      "dark" : "dark website theme",<br>
 &nbsp;&nbsp;      "light" : "light website theme",<br>
@@ -165,6 +165,8 @@ let typeWriterRate = 10;
 console.log("Hello world!");
 const validCommands = ["load", "whoami", "resume", "nufetch", "paper", "banner", "help", "fortune", "secret", "projects", "dark", "light","posts", "mini_projects", "t-repo", "clear", "s", "sound", "stop", "echo", "hist"];
 var nfetch = document.getElementById("nuFetchDiv");
+var miniProjectsDiv = document.getElementById("mini-projects-div");
+var postsDiv = document.getElementById("postsDiv");
 var textArt = document.getElementById("text-art");
 var textArtClone = textArt.cloneNode(true);
 
@@ -368,14 +370,23 @@ function rstInput(){
       break;
       case "posts":
         cmndHist();
-        div.innerHTML = technical_posts_txt;
-        output.append(div); 
+
+        newDiv = postsDiv;
+        newDiv.style.display = "block"
+        div.innerHTML = `<br>`;
+        output.append(div);
+        output.append(newDiv);
         rstInput(); 
         break;
+
         case "mini_projects":
+          //div.innerHTML = mini_projects_txt;
           cmndHist();
-          div.innerHTML = mini_projects_txt;
-          output.append(div);
+          newDiv =  miniProjectsDiv;
+          newDiv.style.display = "block"
+          div.innerHTML = `<br>`;
+          output.append(div)
+          output.append(newDiv);
           rstInput();
           break;
           case "t-repo":
