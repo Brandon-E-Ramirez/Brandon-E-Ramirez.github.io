@@ -1,14 +1,18 @@
-//! TO_DO: projects, mini_projects, posts, banner, fortune, secret, 
+//! TO_DO: projects, mini_projects, posts, fortune, secret, 
+//programming quotes, calculator, weather.
 
+//!         typing!
 
+function replaceNewlinesWithBreaks(text) {
+  return text.replace(/\n/g, '<br>');
+}
 
-let about_me_txt = 
-`<br> Hi! I'm Brandon Ramirez, computer science senior at the University of Houston - Clear Lake! <br>
-I love to challenge myself and find creative ways to solve complex problems. I like making <br>
-software that provides value to other people and the process of making/learning new and novel <br>
-things. Whenever I have free time I like playing guitar, going to the gym, digital art, writing, <br>
-and teaching! My technical interests include software/game development, web dev, GNU/Linux, <br>
-and open source! :) <br>`;
+let about_me_txt = replaceNewlinesWithBreaks("\n Hi! I'm Brandon Ramirez, computer science senior at the University of Houston - Clear Lake!\n" +
+  "I love to challenge myself and find creative ways to solve complex problems. I like making \n" +
+  "software that provides value to other people and the process of making/learning new and novel \n" +
+  "things. Whenever I have free time I like playing guitar, going to the gym, digital art, writing,\n" +
+  "and teaching! My technical interests include software/game development, web dev, GNU/Linux,\n" +
+  "and open source! :)\n");
 
 
 let help_txt = 
@@ -24,8 +28,8 @@ let help_txt =
 &nbsp;&nbsp;      "nufetch":"system information tool",   <br>
 &nbsp;&nbsp;      "banner":"print ascii art name",   <br>
 &nbsp;&nbsp;      "paper":"change wallpaper",<br>
-&nbsp;&nbsp;      "dark":"dark website theme (default)",<br>
-&nbsp;&nbsp;      "light":"light theme",<br>
+&nbsp;&nbsp;      "dark":"dark website theme",<br>
+&nbsp;&nbsp;      "light":"light website theme",<br>
 &nbsp;&nbsp;      "sound":"play music",<br>
 &nbsp;&nbsp;      "stop":"stop music",   <br>
 &nbsp;&nbsp;      "fortune":"receive a fortune",  <br> 
@@ -122,10 +126,6 @@ This project is now open source, type 't-repo' to check it out<br>
 For a simplified version, type 's'<br>
 `;
 
-
-
-
-
 let fortune_txt = `<br> Receive a ✨fortune✨<br>`;
 let secret_txt = `<br> Easter egg? Cicada type stuff coming soon <br>`;
 let clear_text = `The terminal has been cleared!`;
@@ -163,6 +163,7 @@ UNIX OS 22.04.1. LTS localhost <br><br>
 
 //*Everything above this line is "content", logic below...
 
+let typeWriterRate = 10;
 console.log("Hello world!");
 const validCommands = ["load", "whoami", "resume", "nufetch", "paper", "banner", "help", "fortune", "secret", "projects", "dark", "light","posts", "mini_projects", "t-repo", "clear", "s", "sound", "stop", "echo", "hist"];
 var nfetch = document.getElementById("nuFetchDiv");
@@ -214,6 +215,8 @@ function cmndHist(){
 function displayText(str) {
   let div = document.createElement('div');
   let span = document.createElement('span');
+  let preElement = document.createElement('pre');
+  let brElement = document.createElement('br');
 
   if(input.value.includes("echo", 0)){
     cmndHist();
@@ -233,14 +236,24 @@ function displayText(str) {
     */
     case "sound":
       cmndHist();
-      div.innerHTML = `<br>Loading sound module...<br>`;
+      //div.innerHTML = `<br>Loading sound module...<br>`;
+      const typewriterSoundText = `<br>Loading sound module...<br>`;
+      const typewriterSoundElement = div;
+      output.append(div); 
+      typeWriter(typewriterSoundText, typewriterSoundElement, typeWriterRate);
       output.append(div);
       playButton.click();
       rstInput();
       break;
     case "stop":
       cmndHist();
-      div.innerHTML = `<br>Stopping audio...<br>`;
+      //div.innerHTML = `<br>Stopping audio...<br>`;
+
+      const typewriterStopText = `<br>Stopping audio...<br>`;
+      const typewriterStopElement = div;
+      output.append(div); 
+      typeWriter(typewriterStopText, typewriterStopElement, typeWriterRate);
+
       output.append(div);
       audio.pause();
       playButton.innerHTML = "audio null";
@@ -249,14 +262,25 @@ function displayText(str) {
     case "paper":
       cmndHist();
       selectWallpaper();
-      div.innerHTML = `<br> new wallpaper! <br>`;
+      const typewriterPaperText = `<br> new wallpaper! <br>`;
+      const typewriterPaperElement = div;
+      output.append(div); 
+      typeWriter(typewriterPaperText, typewriterPaperElement, typeWriterRate);
+      //div.innerHTML = `<br> new wallpaper! <br>`;
       output.append(div);
       rstInput();
     break;
     case "whoami":
       cmndHist();
-      div.innerHTML = about_me_txt;
+
+
+      const typewriterText = about_me_txt;
+      const typewriterElement = div;
       output.append(div); 
+      typeWriter(typewriterText, typewriterElement, typeWriterRate);
+
+
+      //div.innerHTML = about_me_txt;
       rstInput(); 
       break;
     case "resume":
@@ -615,12 +639,11 @@ o++;
 
 /*'/assets/images/backgrounds/use/1.jpg',*/
 const backgrounds = [
-'/assets/images/backgrounds/use/0.webp',
-'/assets/images/backgrounds/use/1.jpg',
-'/assets/images/backgrounds/use/4.webp',
-'/assets/images/backgrounds/use/17.webp',
-'/assets/images/backgrounds/use/3.webp',
-'/assets/images/backgrounds/use/9.webp',
+  '/assets/images/backgrounds/use/1.jpg',
+  '/assets/images/backgrounds/use/4.webp',
+  '/assets/images/backgrounds/use/17.webp',
+  '/assets/images/backgrounds/use/3.webp',
+  '/assets/images/backgrounds/use/9.webp',
 '/assets/images/backgrounds/use/2.gif',
 '/assets/images/backgrounds/use/6.gif',
 '/assets/images/backgrounds/use/12.webp',
@@ -658,3 +681,32 @@ function removeDiv(){
   }
   brIndex+=2;
 }
+
+
+function typeWriter(text, element, speed) {
+  let i = 0;
+  const length = text.length;
+
+  function type() {
+      if (i < length) {
+          if (text.charAt(i) === '<') {
+              // Find the closing '>' character for the HTML tag
+              const closingIndex = text.indexOf('>', i);
+              if (closingIndex !== -1) {
+                  const htmlTag = text.substring(i, closingIndex + 1);
+                  element.innerHTML += htmlTag;
+                  i = closingIndex + 1;
+                  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+                  //window.scrollTo(0, document.body.scrollHeight);
+              }
+          } else {
+              element.innerHTML += text.charAt(i);
+              i++;
+          }
+          setTimeout(type, speed);
+      }
+  }
+
+  type();
+}
+
