@@ -167,6 +167,7 @@ const validCommands = ["load", "whoami", "resume", "nufetch", "paper", "banner",
 var nfetch = document.getElementById("nuFetchDiv");
 var miniProjectsDiv = document.getElementById("mini-projects-div");
 var postsDiv = document.getElementById("postsDiv");
+var projects = document.getElementById("mainProjects");
 var textArt = document.getElementById("text-art");
 var textArtClone = textArt.cloneNode(true);
 
@@ -364,9 +365,30 @@ function rstInput(){
           break;
     case "projects":
       cmndHist();
+      /*
       div.innerHTML = projects_txt;
       output.append(div); 
-      rstInput(); 
+      */
+
+
+
+        newDiv = projects;
+        newDiv.style.display = "block"
+        div.innerHTML = `<br>`;
+        output.append(div);
+        output.append(newDiv);
+
+
+
+      rstInput();
+      
+      
+
+
+
+
+
+
       break;
       case "posts":
         cmndHist();
