@@ -26,13 +26,13 @@ let help_txt =
 &nbsp;&nbsp;      "banner" : "print ascii art name + site instructions",   <br>
 &nbsp;&nbsp;      "nufetch" : "system information tool",   <br>
 &nbsp;&nbsp;      "paper" : "change wallpaper",<br>
-&nbsp;&nbsp;      "dark" : "dark website theme",<br>
+&nbsp;&nbsp;      "dark" : "dark website theme(default)",<br>
 &nbsp;&nbsp;      "light" : "light website theme",<br>
 &nbsp;&nbsp;      "sound" : "play music",<br>
 &nbsp;&nbsp;      "stop" : "stop music",   <br>
 &nbsp;&nbsp;      "fortune" : "receive a fortune",  <br> 
 &nbsp;&nbsp;      "echo [str]" : "print custom text to std output",   <br>
-&nbsp;&nbsp;      "secret" : "easter egg",   <br>
+&nbsp;&nbsp;      "secret" : "mystery",   <br>
 &nbsp;&nbsp;      "hist" : "show user command history",<br>
 &nbsp;&nbsp;      "s" : "simple version of this website [Github profile]",   <br>
 &nbsp;&nbsp;      "t-repo" : "Github repository for this resume",<br>
@@ -125,13 +125,13 @@ For a simplified version, type 's'<br>
 `;
 
 let fortune_txt = `<br> Receive a ✨fortune✨<br>`;
-let secret_txt = `<br> Easter egg? Cicada type stuff coming soon <br>`;
+//let secret_txt = `<br> Easter egg? Cicada type stuff coming soon <br>`;
 let clear_text = `The terminal has been cleared!`;
 
 let ok = "[   OK    ]        "
 let dot = "..." + "<br>";
 let loading_txt = 
-`<br><br>
+`<br>
 ${ok}Starting GRUB boot detection${dot}
 ${ok}Setting console scheme${dot}
 ${ok}Running diagnostics${dot}
@@ -145,7 +145,9 @@ ${ok}Reached Target Login Prompts${dot}
 ${ok}Started Time & Date Service${dot}
 ${ok}Waiting on seed regeration${dot} <br> 
 
-UNIX OS 22.04.1. LTS localhost <br><br>
+UNIX OS 22.04.1. LTS localhost <br>
+
+<br> Easter egg? Cicada type stuff coming soon <br>
 `
 //banner art: https://patorjk.com/software/taag/#p=testall&f=Crawford2&t=Ramirez
 /***
@@ -347,7 +349,7 @@ function rstInput(){
       break;
       case "dark":
         cmndHist()
-        output.style.color = "#c3e510";
+        output.style.color = "#ffffff";
         body.style.backdropFilter = "brightness(20%) blur(5px)";
       rstInput();
       break;
@@ -358,9 +360,14 @@ function rstInput(){
         rstInput();
         break;
         case "secret":
+
+
           cmndHist();
-          div.innerHTML = secret_txt;
-          output.append(div);
+          let typewriterLoadElement = div;
+          typeWriter(loading_txt, typewriterLoadElement, typeWriterRate);
+          output.append(div); 
+
+
           rstInput();
           break;
     case "projects":
@@ -420,7 +427,7 @@ function rstInput(){
       break;
       case "clear":
         cmndHist();
-        div.innerHTML = `<br><br><br><br><br><br>` +  clear_text + `<br><br><br><br><br><br><br><br>`;
+        div.innerHTML = `<br><br><br><br><br><br>` +  clear_text + `<br><br><br><br><br><br><br>`;
         output.replaceChildren(div);
         //let ds = document.getElementById("divSpace");
         //const lineBreak = document.createElement('br');

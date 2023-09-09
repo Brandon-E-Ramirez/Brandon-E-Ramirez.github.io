@@ -53,7 +53,7 @@ https://prismjs.com-->
 
 ## Current bugs
 - text dissapears from the left when typing
-- border should occupy entire window at all times (especially at beginning)
+- ~~border should occupy entire window at all times (especially at beginning)~~
 
 
 This is a continually evolving project, please assume all code is in an 
