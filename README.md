@@ -22,17 +22,20 @@ Feel free to make suggestions!
 - change wallpaper with "paper"
 - play music with "sound"
 - guest@brandon-term.com:/home$ ~ + <command> added when command is run 
+- typing animation
+- dark/light themes
+- New color scheme based off my 2 favorites (Monokai + Gruvbox) <!--https://www.w3schools.com/howto/howto_js_typewriter.asp-->
+- fortunes
+
 
 ## Upcoming features
-- New color scheme based off my 2 favorites (Monokai + Gruvbox) <!--https://www.w3schools.com/howto/howto_js_typewriter.asp-->
-- typing animation
 - make keyboard art glow
 - adding "bootup" + "typing" sounds
 - add easter egg
 - add copyright, credits <!--Terminal-styled portfolio by Brandon Ramirez is licensed under a creative commons-->
 - including package "downloads" with loading sequence
 - (some) vim keybindings
-- fortune + programming quote commands
+- programming quotes
 - including simple utilities (calculator, date, weather, etc.)
 - "source" command to show website code (syntax highligting)
 <!--https://dev.to/ehlo_250/how-to-add-syntax-highlighting-to-code-snippets-on-your-website-app-or-blog-2mi2
