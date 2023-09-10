@@ -265,7 +265,7 @@ hr.top {
   position:static;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 26px;
   color: #f2f2f2;
   margin-right: 10px;
 }
@@ -428,6 +428,12 @@ font-family:'DroidSansM Nerd Font Mono', monospace;
 }
 
 
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: none;  /* Optional: just make scrollbar invisible */
+    -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 
 
