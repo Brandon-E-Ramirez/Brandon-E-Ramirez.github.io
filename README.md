@@ -3,8 +3,7 @@
 
 # terminal_portfolio
 Files, resources, and assets I will use to create a minimalistic terminal themed browser portfolio 
-
-I am working on a terminal portfolio made from scratch and deploying it soon with Github pages.
+I am working on a terminal portfolio made from scratch, I deployed on GitHub pages and is now available: https://brandon-e-ramirez.github.io/
 My main goal is to have interactive projects and technical blog posts available.
 
 Feel free to make suggestions!
