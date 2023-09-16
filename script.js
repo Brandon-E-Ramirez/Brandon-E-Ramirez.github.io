@@ -289,7 +289,7 @@ function rstInput(){
       case "resume":
         cmndHist();
         var link = document.createElement('a');
-        link.href = 'assets/documents/Brandon E Ramirez Resume Fall 2023.pdf';
+        link.href = 'assets/documents/Brandon E Ramirez Resume - Fall 2023.pdf';
         //link.target = '_blank'; // Open the PDF in a new tab/window
         link.download = 'Brandon_Ramirez_Resume' || 'document.pdf'; // Set the default filename if not provided
         link.click();
