@@ -484,11 +484,15 @@ dynamicaly resizes, the animated green caret should move left/right at the same 
 types*/
 
 //This code shifts the text to the right while typing
-    input.addEventListener('input', () => {
-    const textLength = input.value.length;
-    const offset = 5 * textLength;
-    input.style.width = offset + 'px';
-  });
+  input.addEventListener('input', () => {
+
+if(input.value.length == 0){
+input.style.width = '2px';
+}else{
+  input.style.width = 'initial';
+  input.setAttribute('size', input.value.length);
+}
+});
 
 //color changes if command is valid
   input.addEventListener('input', () => {

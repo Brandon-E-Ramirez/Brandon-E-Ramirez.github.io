@@ -54,12 +54,14 @@ a:hover {
 
 input {
     position:relative;
-    text-align: right;
+    width: 0px;
+    text-align: left;
     border: none;
     outline: none;
     color: #98971a;
     font-family: monospace;
-    background: transparent;
+    resize: horizontal;
+    background-color: transparent;
     /*background-color: #282828;*/
     caret-color: transparent;
     font-size: 14px;
