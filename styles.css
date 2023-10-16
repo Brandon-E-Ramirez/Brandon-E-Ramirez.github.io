@@ -30,10 +30,7 @@ body{
     margin:14px;
     padding: 10px; 
     position:relative;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+
     overflow: auto;
     backdrop-filter: blur(10px) brightness(50%);
     transform: scale(1.0);
@@ -437,8 +434,11 @@ font-family:'DroidSansM Nerd Font Mono', monospace;
   scrollbar-width: none;  /* Firefox */
 }
 
-html, body {
+@media only screen and (orientation: landscape) {
+  .banner {
   margin: 0;
+
+  }
 }
 
 
