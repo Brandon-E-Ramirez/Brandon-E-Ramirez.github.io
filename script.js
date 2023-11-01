@@ -202,6 +202,7 @@ function rstInput(){
         output.append(div);
         window.scrollTo(0, document.body.scrollHeight);
         removeDiv();
+        //input.innerHTML = "";
       }
       
       function cmndHist(){
