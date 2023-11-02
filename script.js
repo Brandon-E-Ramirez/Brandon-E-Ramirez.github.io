@@ -191,8 +191,14 @@ inputField.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     event.preventDefault();
     button.click();
+    input.style.width = 0;
   }
 });
+
+
+
+
+
 
 function rstInput(){
   let div = document.createElement('div');
@@ -202,7 +208,6 @@ function rstInput(){
         output.append(div);
         window.scrollTo(0, document.body.scrollHeight);
         removeDiv();
-        //input.innerHTML = "";
       }
       
       function cmndHist(){
@@ -504,9 +509,15 @@ input.style.width = '2px';
     }
   });
 
+
+
+
+
+
 //this code checks if up-arrow is ever pressed at any time. This will invoke previous commands which can be quickly retrieved
 const commandStack = [];
 commandStack.push("Stack is empty!");//the command currently in the input is added to the stack
+let cmndIndex = commandStack.length;
 
 window.addEventListener(
   "keydown",
@@ -515,20 +526,34 @@ window.addEventListener(
       return; // Do nothing if the event was already processed
     } 
     switch (event.key) {
+
+
       case "ArrowDown":
-        // Do something for "down arrow" key press.
-        commandStack.length = 0;
-        input.value = "Stack has been cleared!";
-        break;
-        case "ArrowUp":
-        // Do something for "up arrow" key press.
-        prev = commandStack.pop(); //retrieve most recent command
-        input.value = prev;
+        //increase index by 1, return value 
+        //input.value = "Stack has been cleared!";
+        cmndIndex++;
+        input.style.width = commandStack[cmndIndex].style.width;
+        input.value = commandStack[cmndIndex];
         if (input.value == "undefined"){
           rstInput();
         }
         break;
+        //have array push elements to array, when up arrow is pressed decrease index by 1 and return the value from updated index.
+        case "ArrowUp":
 
+/*
+        cmndIndex--; //retrieve most recent command
+        //input.style.width = commandStack[cmndIndex].style.width;
+        input.value = commandStack[cmndIndex];
+
+
+
+        if (input.value == "undefined"){
+          rstInput();
+        }
+        */
+        break;
+      //do this later
       case "Tab":
         window.alert("Implement auto completion!")
         break;
@@ -536,6 +561,9 @@ window.addEventListener(
         return; // Quit when this doesn't handle the key event.
     }
   });
+
+
+
 
   const time = document.getElementById('uptime');
   const clock = document.getElementById('time');
