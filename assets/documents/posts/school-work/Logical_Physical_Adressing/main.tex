@@ -1,0 +1,384 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you open the
+% 'Share' menu, you can invite other users to edit at the same
+% time. See www.overleaf.com/learn for more info. Enjoy!
+%https://www.overleaf.com/learn/latex/Beamer#Themes_and_colorthemes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[10pt, aspectratio=43]{beamer}
+\usetheme{Warsaw}
+\usefonttheme{serif}
+%\usetheme{Copenhagen}
+%\usetheme{Madrid}
+
+
+
+%these lines remove unnecessary stuff 
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{}
+
+%use this to make copies for students
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{4 on 1}[a4paper, border shrink=5mm]
+
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{placeins} %makes images stay in their own section/subsection, brilliant!
+\usepackage[document]{ragged2e}
+\usepackage{setspace}
+\usepackage{tensor}
+\usepackage{blindtext}
+\usepackage{cancel}
+\usepackage{fancyhdr}
+%\setbeamertemplate{footline}[frame number]
+
+
+
+%inserts frame number as well as setting it to the right
+% https://texblog.net/latex-archive/uncategorized/beamer-footline-frame-number/
+\newcommand*\oldmacro{}%
+\let\oldmacro\insertshorttitle%
+\makeatletter
+\renewcommand*\insertshorttitle{%
+  \oldmacro\hfill%
+  \insertframenumber\,/\,\inserttotalframenumber\@gobbletwo}
+\makeatother
+
+
+%------------------------------------------------------------
+%This block of code defines the information to appear in the
+%Title page
+\title[School of Computer \& Network Administration] %optional
+{CINF 3331 - Spring 2024\\Introduction to Computer Networks}
+
+\subtitle{Lecture 1 - Logical \& Physical Addressing}
+
+\author[Galveston College] % (optional)
+{Instructor: Brandon E Ramirez}
+\date{}
+
+\logo{\includegraphics[height=1.0cm]{images/gc_logo.jpg}}
+
+%End of title page configuration block
+%------------------------------------------------------------
+
+%Notes, read before rehearsing
+
+%Comparison between WiFi and Ethernet WiFi is based on IEEE 802.11x specifications where x is WiFi versions. Ethernet is based on IEEE 802.3 specifications. Devices can be connected without wires, without ports. Ethernet is wired and hence no mobility.
+
+
+
+
+
+\begin{document}
+
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents
+\end{frame}
+
+
+\section{What is a computer network?}
+\begin{frame}{}
+    \centering
+    \huge \textbf{What is a computer network?}
+\end{frame}
+
+\begin{frame}{Computer Networks}
+    \begin{block}{Definition}
+        A \textbf{computer network} is a set of interconnected computers that communicate with each other to share resources and information. Networks can be classified into different types based on their size and geographic scope, such as Local Area Networks (LANs), Wide Area Networks (WANs), and the Internet.
+    \end{block}
+\end{frame}
+
+
+
+
+\section{How do they communicate?}
+\begin{frame}{}
+    \centering
+    \huge \textbf{Network Communication}
+\end{frame}
+
+\begin{frame}{Network Communication}
+    Computer networks communicate with each other through a set of protocols and standards that define how data is transmitted, received, and interpreted. Devices are expected to be able to find each other and transmit/interpret data, this is possible through several methods of allocating different types addresses which serve special purposes. There are two main address types, logical and physical.
+\end{frame}
+
+
+
+
+\section{Logical Addresses}
+
+\begin{frame}{}
+    \centering
+    \huge \textbf{Logical Addresses}
+\end{frame}
+
+
+\begin{frame}{Logical Addresses}
+    \begin{block}{Definition}
+        A \textbf{logical address} is a network address that is assigned to a device or a network node to identify it uniquely within a network (at a higher-layer).
+    \end{block}
+
+    \begin{block}{Purpose} 
+        Logical addresses are used for routing and communication purposes at the network layer (Layer 3) of the OSI model. Their purpose is to uniquely identify devices across the internet. 
+    \end{block}
+\end{frame}
+
+\subsection{Logical Addresses Contd.}
+\begin{frame}{Logical Addresses Contd.}
+%static ip addresses are used by companies or services that require a unique, unchanging addresses to be able to reliable send and transmit communications.
+    \begin{block}{Note:}
+         Logical addresses, such as IP addresses, are assigned by software protocols and can be changed or reconfigured. These addresses can extend beyond the local network and facilitate communication across different networks.
+    \end{block}
+
+\begin{alertblock}{IPv4}
+    "Internet Protocol version 4" addresses are 32-bit integers that have to be expressed in decimal notation. It is represented by 4 (octets) numbers separated by dots in the range of 0-255, which have to be converted to 0 and 1 to be understood by computers. For Example, an IPv4 Address can be written as 189.123.123.90.
+\end{alertblock}    
+\end{frame}
+
+\subsection{Static vs Dynamic IP addresses}
+\begin{frame}{Static vs Dynamic IP addresses}
+    IPv4 is more common than IPv6, so we will talk about IPv4 for now.    
+    Static IP addresses do not change for the lifetime of a network device, but can be changed (or created) by requesting one from your ISP. 
+    
+    \vspace{0.25cm}
+    
+    Dynamic IP addresses change but not very often. Most customers are assigned dynamic IP addresses due to their cost, security, and reliability.
+
+    \begin{block}{}
+        DHCP (Dynamic Host Configuration Protocol) is a network management protocol used to dynamically assign an IP address to any device, or node, on a network so it can communicate using IP.
+    \end{block}
+\end{frame}
+
+\subsection{IP Address Example}
+\begin{frame}{IP Address Example}
+Watch the following video demonstration at 00:45-2:40, pay attention to how and why IP addresses are used.
+
+\vspace{0.25cm}
+
+\begin{example}
+How the Internet Works in 5 Minutes by Aaron Titus
+\url{https://www.youtube.com/watch?v=7_LPdttKXPc}
+\end{example}
+    
+\end{frame}
+
+
+
+
+\section{Physical Addresses}
+
+\begin{frame}{}
+    \centering
+    \huge \textbf{Physical Addresses}
+\end{frame}
+
+
+\begin{frame}{Physical Addresses}
+
+    \begin{block}{Definition}
+         A physical address, also known as a hardware address or MAC (Media Access Control) address, is a unique identifier assigned to the network interface card (NIC) of a device.
+    \end{block}
+
+
+
+    \begin{block}{Purpose}
+        Physical addresses are used at the data link layer (Layer 2) of the OSI model to identify devices on a local network. They are used for addressing within a LAN and are typically assigned by the manufacturer.
+    \end{block}
+    
+\end{frame}
+
+
+\subsection{Network Interface Cards}
+\begin{frame}{Network Interface Cards}
+
+\begin{block}{}
+    Some manufacturers provide both wired and wireless MAC addresses. Most of the time they are displayed somewhere on the device.
+\end{block}
+
+\begin{columns}
+    
+\column{0.5\textwidth}
+%some manufacturers provide both wired and wireless MAC addresses. Most of the time they are displayed somewhere on the device and is integrated into the devices themselves instead of being separate cards requiring a dedicated PCIe slot on the motherboard. Dedicated cards offer advantages such as greater speeds.
+    \begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=.9\textwidth]{images/SF8120-001_EN_v9.png}
+\end{figure}
+\FloatBarrier
+
+\column{0.5\textwidth}
+    \begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=1\textwidth]{images/ethernet_mac_address.jpg}
+\end{figure}
+\FloatBarrier
+
+\end{columns}
+\end{frame}
+
+
+
+
+\subsection{Physical Addresses Contd.}
+\begin{frame}{Physical Addresses Contd.}
+\begin{block}{Note:}
+    MAC addresses are only used to identify a specific device within an immediate network. They are hardware oriented and cannot be modified. 
+\end{block}
+
+%the first 3 bytes identify the manufacturer while the last 3 bytes identify the specific device in a network
+
+\begin{alertblock}{MAC}
+Network Interface Cards are assigned a 48 bit (6 bytes) address by the vendor which is represented as a 12 digit hexadecimal string.  These addresses are usually written as six two-digit hexadecimal number pairs, such as "01:23:45:67:89:AB"
+\end{alertblock}
+
+\end{frame}
+
+\subsection{MAC Address Example}
+\begin{frame}{MAC Address Example}
+Watch the following video demonstration at 1:17-3:30, pay attention to how and why MAC addresses are used.
+
+\vspace{0.25cm}
+
+\begin{example}
+MAC Address Explained by PowerCert Animated Videos
+\url{https://www.youtube.com/watch?v=TIiQiw7fpsU}
+\end{example}
+    
+\end{frame}
+
+
+
+\section{Differences}
+\begin{frame}{Differences}
+    Some differences between physical and logical addresses are:
+\begin{itemize}
+    \item physical address (MAC) vs. logical address (IP)
+    \item permanent addresses vs. dynamically changing addresses
+    \item OSI layer 2 (data link) vs. Layer 3 (network) operation
+    \item local identification vs. global identification
+    \item number of bits (48 vs. 32)
+\end{itemize}
+\end{frame}
+
+
+\section{Distinct Purposes}
+\begin{frame}{Distinct Purposes}
+    Logical addresses (e.g. IP addresses) are used for network-wide communication and routing decisions (layer 3), while physical addresses (e.g., MAC addresses) are used for direct communication between devices within the same network segment (layer 2). 
+\end{frame}
+
+
+\section{OSI Overview}
+
+\begin{frame}{OSI Overview}
+The Open Systems Interconnection model or OSI is a conceptual model from the International Organization for Standardization (ISO) that "provides a common basis for the coordination of standards development for the purpose of systems interconnection."
+
+\begin{block}{Purpose}
+    To standardize data networking protocols to allow communication between all networking devices across the entire planet.
+\end{block}
+
+        \begin{block}{}
+    ISO is an independent, non-governmental international organization. It brings global experts together to agree on the best ways of doing things, from making products to managing processes.
+\end{block}
+\end{frame}
+
+\subsection{OSI Contd.}
+\begin{frame}{OSI Contd.}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=1\textwidth]{images/1EPTBkCUnnZVVd29wBBQpX5qY7fxfOBPJc6yRPqLSS4A_0.png}
+    \caption{OSI Model (Open Systems Interconnection Model)}
+\end{figure}
+\FloatBarrier
+\column{0.5\textwidth}
+ In 1984, the International Organization for Standardization (ISO) published the OSI framework to standardize network design and equipment manufacturing principles.
+\end{columns}
+\end{frame}
+
+
+
+\subsection{OSI Visualization}
+\begin{frame}{OSI Visualization}
+
+
+\begin{columns}
+    \column{0.5\textwidth}
+    \begin{figure}[h] % 'place image here (float)'
+    \centering
+    \includegraphics[width=1.05\textwidth]{images/original-seven-layers-of-osi-model-1627523878-JYjV8oybcC.png}
+\end{figure}
+\FloatBarrier
+\column{0.5\textwidth}
+\begin{block}{}
+    The OSI model helps engineers, systems manufacturers, and network professionals conceptualize the layers that computer systems use to communicate over a network; including their uses, protocols, and properties.  
+\end{block}
+
+
+\end{columns}
+\end{frame}
+
+
+\iffalse 
+Use this comment to keep track of references and work specific to this section
+%**********************multi-line comment*****************************
+Dear Mr. Ramirez,
+
+Our interview process involves two steps: i) a classroom demonstration, we would like to observe a 30 minutes lecture on the following topic “ Explain the difference between a logical address and a physical address in computer networking.  How are these addresses assigned to a device?   How are they used when someone uses the internet?  Give an example of a protocol that uses these addresses?”. We want to observe how you will teach this topics to the students. We do not want to hear how you will teach this topics. Prepare  and teach the class the same way  you would to your students.
+ii) Questions section, you will answer the questions of the search committee member, usually 20 to 30 minutes.
+
+The classroom we will meet on has projector and blackboard. Do not hesitate in contacting me if you have any questions or concerns. 
+I look forward to seeing you.
+
+
+
+
+
+
+
+
+
+
+
+goal:presentation lasting 30 minutes where I explain:
+
+
+Explain the difference between a logical address and a physical address in computer networking [x]
+
+
+
+How are these addresses assigned to a device? [x]
+
+
+---explain OSI model---
+
+
+
+How are they used when someone uses the internet? [x]
+
+
+Give an example of a protocol that uses these addresses? [x]
+
+
+
+
+
+
+
+
+
+
+
+
+
+%*********************************************************************
+\fi
+
+
+
+
+\end{document}
